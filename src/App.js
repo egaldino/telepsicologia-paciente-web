@@ -2,7 +2,7 @@ import React from 'react';
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import HomeTemplate from "./pages/home/HomeTemplate";
-import Requests from './pages/home/requests/Requests'
+import Search from './pages/home/search/Search'
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import ScheduledAppointments from "./pages/home/scheduledAppointments/ScheduledAppointments";
 import PastAppointments from "./pages/home/pastAppointments/PastAppointments";
@@ -16,8 +16,8 @@ const App = () => {
                 <Route path="/" element={<Login/>}/>
                 <Route path="register" element={<Register/>}/>
                 <Route path="requests" element={
-                    <HomeTemplate title="Solicitações de Consulta">
-                        <Requests />
+                    <HomeTemplate title="Buscar Psicólogo">
+                        <Search />
                     </HomeTemplate>}/>
                 <Route path="schedule" element={
                     <HomeTemplate title="Consultas Agendadas">

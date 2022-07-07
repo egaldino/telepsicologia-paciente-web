@@ -59,10 +59,10 @@ const Profile = () => {
                     <TextField
                         required
                         fullWidth
-                        name="crp"
-                        label="CRP"
+                        name="cpf"
+                        label="CPF"
                         type="number"
-                        id="crp"
+                        id="cpf"
                     />
                 </Grid>
             </Grid>

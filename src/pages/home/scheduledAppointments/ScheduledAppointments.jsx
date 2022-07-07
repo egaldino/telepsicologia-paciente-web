@@ -25,23 +25,24 @@ const renderDetailsButton = (params) => {
 }
 
 const columns = [
-    { field: 'firstName', headerName: 'Nome', width: 250 },
-    { field: 'lastName', headerName: 'Sobrenome', width: 250 },
-    { field: 'date', headerName: 'Data', width: 250 },
-    { field: 'actions', headerName: 'Ações', width: 250, renderCell: renderDetailsButton },
+    { field: 'firstName', headerName: 'Nome', width: 200 },
+    { field: 'lastName', headerName: 'Sobrenome', width: 200 },
+    { field: 'crp', headerName: 'CRP', width: 200 },
+    { field: 'date', headerName: 'Data', width: 200 },
+    { field: 'actions', headerName: 'Ações', width: 200, renderCell: renderDetailsButton },
 ];
 
 const ScheduledAppointments = () => {
     const [appointments] = useState([
-        { id: 1, lastName: 'Snow', firstName: 'Jon', date: '24/06/2022 - 12:00h' },
-        { id: 2, lastName: 'Lannister', firstName: 'Cersei', date: '24/06/2022 - 12:00h' },
-        { id: 3, lastName: 'Lannister', firstName: 'Jaime', date: '24/06/2022 - 12:00h' },
-        { id: 4, lastName: 'Stark', firstName: 'Arya', date: '24/06/2022 - 12:00h' },
-        { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', date: '24/06/2022 - 12:00h' },
-        { id: 6, lastName: 'Melisandre', firstName: null, date: '24/06/2022 - 12:00h' },
-        { id: 7, lastName: 'Clifford', firstName: 'Ferrara', date: '24/06/2022 - 12:00h' },
-        { id: 8, lastName: 'Frances', firstName: 'Rossini', date: '24/06/2022 - 12:00h' },
-        { id: 9, lastName: 'Roxie', firstName: 'Harvey', date: '24/06/2022 - 12:00h' },
+        { id: 1, lastName: 'Snow', firstName: 'Jon', date: '24/06/2022 - 12:00h' , crp: '3217732193' },
+        { id: 2, lastName: 'Lannister', firstName: 'Cersei', date: '24/06/2022 - 12:00h' , crp: '3217732193' },
+        { id: 3, lastName: 'Lannister', firstName: 'Jaime', date: '24/06/2022 - 12:00h' , crp: '3217732193' },
+        { id: 4, lastName: 'Stark', firstName: 'Arya', date: '24/06/2022 - 12:00h' , crp: '3217732193' },
+        { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', date: '24/06/2022 - 12:00h' , crp: '3217732193' },
+        { id: 6, lastName: 'Melisandre', firstName: null, date: '24/06/2022 - 12:00h' , crp: '3217732193' },
+        { id: 7, lastName: 'Clifford', firstName: 'Ferrara', date: '24/06/2022 - 12:00h' , crp: '3217732193' },
+        { id: 8, lastName: 'Frances', firstName: 'Rossini', date: '24/06/2022 - 12:00h' , crp: '3217732193' },
+        { id: 9, lastName: 'Roxie', firstName: 'Harvey', date: '24/06/2022 - 12:00h' , crp: '3217732193' },
     ]);
 
 
@@ -52,7 +53,7 @@ const ScheduledAppointments = () => {
         <Card>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    Wiubi
+                    Wiubi (CRP: 3217732193)
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                     2022/06/22 - 12h

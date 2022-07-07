@@ -15,7 +15,7 @@ export const mainListItems = (
             <ListItemIcon>
                 <NotificationsIcon />
             </ListItemIcon>
-            <ListItemText primary="Solicitações"/>
+            <ListItemText primary="Buscar"/>
         </ListItemButton>
         <ListItemButton component={ReactRouterLink} to={"/schedule"}>
             <ListItemIcon>
