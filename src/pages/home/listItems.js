@@ -11,7 +11,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 export const mainListItems = (
     <React.Fragment>
-        <ListItemButton component={ReactRouterLink} to={"/requests"}>
+        <ListItemButton component={ReactRouterLink} to={"/search"}>
             <ListItemIcon>
                 <NotificationsIcon />
             </ListItemIcon>
