@@ -10,6 +10,7 @@ import Profile from "./pages/home/profile/Profile";
 import VideoCall from "./pages/videoCall/VideoCall";
 import {Provider} from "react-redux";
 import {store} from "./store/store";
+import ScheduleNew from "./pages/home/scheduleNew/ScheduleNew";
 
 const App = () => {
     return (
@@ -25,6 +26,10 @@ const App = () => {
                     <Route path="schedule" element={
                         <HomeTemplate title="Consultas Agendadas">
                             <ScheduledAppointments />
+                        </HomeTemplate>}/>
+                    <Route path="schedule/:crp" element={
+                        <HomeTemplate title="Agendar consulta">
+                            <ScheduleNew />
                         </HomeTemplate>}/>
                     <Route path="history" element={
                         <HomeTemplate title="Consultas Realizadas">

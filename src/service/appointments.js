@@ -13,3 +13,11 @@ export const listPastAppointments = (userId) => {
     })
         .then((res) => res.json())
 }
+
+export const scheduleNewAppointment = (crp, date) => {
+    return fetch(`${process.env.REACT_APP_PACIENTE_API_URL}/scheduleNewAppointment`, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json'},
+        body: JSON.stringify({crp, date})
+    })
+}

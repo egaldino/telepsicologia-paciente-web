@@ -6,6 +6,7 @@ import Grid from "@mui/material/Grid";
 import SearchIcon from '@mui/icons-material/Search';
 import Box from "@mui/material/Box";
 import {listPsychologists} from "../../../service/psychologists";
+import {Link} from "react-router-dom";
 
 const Search = () => {
     const [psychologists, setPsychologists] = useState([]);
@@ -58,7 +59,7 @@ function PsychologistCard({psychologist}) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Agendar</Button>
+                <Button size="small" component={Link} to={`/schedule/${psychologist.crp}`}>Agendar</Button>
             </CardActions>
         </Card>
     );
