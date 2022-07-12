@@ -16,6 +16,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import BackGroundImage from './login_background.jpeg'
 import {login} from "../../service/authentication";
+import {useDispatch} from "react-redux";
+import {setUserId} from "../../store/store";
 
 function Copyright(props) {
     return (
@@ -33,13 +35,15 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Login() {
-    let navigate = useNavigate();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         login(data.get('email'), data.get('password'))
-            .then(() =>{
+            .then(response =>{
+                dispatch(setUserId(response.userId))
                 navigate("/search", {replace: true})
             }).catch(error => console.error(error))
     };

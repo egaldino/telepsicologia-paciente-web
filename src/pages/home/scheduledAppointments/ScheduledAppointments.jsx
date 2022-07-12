@@ -7,6 +7,7 @@ import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import {DataGrid} from "@mui/x-data-grid";
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const renderDetailsButton = (params) => {
     return (
@@ -37,11 +38,13 @@ const columns = [
 const ScheduledAppointments = () => {
     const [appointments, setAppointments] = useState([]);
 
+    const userId = useSelector(state => state.value.user.id);
+
     useEffect(()=> {
-        listScheduledAppointments('123456')
+        listScheduledAppointments(userId)
             .then(appointments => setAppointments(appointments))
             .catch(error => console.error(error));
-    } , [])
+    } , [userId])
 
     return <>
         <Typography variant="h5" component="h1" sx={{marginBottom: 2}}>
