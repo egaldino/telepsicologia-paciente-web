@@ -40,7 +40,7 @@ const Search = () => {
         {psychologists
             .filter(psychologist => psychologist.name.toUpperCase().includes(search.toUpperCase()))
             .map(psychologist =>
-            <Grid key={psychologist.id} item xs={4}>
+            <Grid key={psychologist.id} item xs={12} sm={4}>
                 <PsychologistCard psychologist={psychologist}/>
             </Grid>
         )}

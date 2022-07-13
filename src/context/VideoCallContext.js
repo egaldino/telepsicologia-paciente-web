@@ -1,9 +1,11 @@
-import React, { createContext, useEffect, useRef, useState } from 'react';
+import React, {createContext, useCallback, useEffect, useRef, useState} from 'react';
 import Peer from 'simple-peer';
+import {useParams} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const SocketContext = createContext();
 
-const socket = new WebSocket('wss://a884-138-117-220-105.sa.ngrok.io/socket');
+const socket = new WebSocket('wss://6a8b-138-117-221-171.sa.ngrok.io/socket');
 
 const ContextProvider = ({ children }) => {
   const [callAccepted, setCallAccepted] = useState(false);
@@ -11,7 +13,10 @@ const ContextProvider = ({ children }) => {
   const [stream, setStream] = useState();
   const [name, setName] = useState('');
   const [call, setCall] = useState({});
-  const [me, setMe] = useState('');
+
+  const {crp} = useParams();
+
+  const userId = useSelector(state => state.value.user.id);
 
   const myVideo = useRef();
   const userVideo = useRef();
@@ -19,24 +24,26 @@ const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-      .then((currentStream) => {
-        setStream(currentStream);
-        myVideo.current.srcObject = currentStream;
-      });
+        .then((currentStream) => {
+          setStream(currentStream);
+        });
+  }, []);
 
+  useEffect(()=> {
+    if(myVideo.current) myVideo.current.srcObject = stream;
+  }, [stream])
+
+  useEffect(()=> {
     socket.onmessage = (evt) => {
       const serverMessage = JSON.parse(evt.data);
-      if (serverMessage.type === 'USER_ID') {
-        setMe(serverMessage.sessionId);
-      }
 
       if (serverMessage.type === 'CALL_USER') {
         setCall({ isReceivingCall: true, from: serverMessage.from, name: serverMessage.name, signal: serverMessage.signal });
       }
     };
-  }, [myVideo]);
+  }, [])
 
-  const answerCall = () => {
+  const answerCall = useCallback(() => {
     setCallAccepted(true);
 
     const peer = new Peer({ initiator: false, trickle: false, stream });
@@ -52,13 +59,13 @@ const ContextProvider = ({ children }) => {
     peer.signal(call.signal);
 
     connectionRef.current = peer;
-  };
+  },[call, stream]);
 
-  const callUser = (id) => {
+  const callUser = useCallback((id) => {
     const peer = new Peer({ initiator: true, trickle: false, stream });
 
     peer.on('signal', (data) => {
-      socket.send(JSON.stringify({ type: 'CALL_USER', userToCall: id, signal: data, from: me, name }));
+      socket.send(JSON.stringify({ type: 'CALL_USER', userToCall: id, signal: data, from: userId, name }));
     });
 
     peer.on('stream', (currentStream) => {
@@ -73,7 +80,23 @@ const ContextProvider = ({ children }) => {
     };
 
     connectionRef.current = peer;
-  };
+  },[userId, name, stream]);
+
+  useEffect(()=> {
+    socket.send(JSON.stringify({ type: 'REGISTER', from: userId}));
+  }, [userId])
+
+  useEffect(() =>{
+    if(crp){
+      callUser(crp)
+    }
+  }, [callUser, crp])
+
+  useEffect(() => {
+    if(call.signal){
+      answerCall();
+    }
+  }, [answerCall, call])
 
   const leaveCall = () => {
     setCallEnded(true);
@@ -93,7 +116,7 @@ const ContextProvider = ({ children }) => {
       name,
       setName,
       callEnded,
-      me,
+      me: userId,
       callUser,
       leaveCall,
       answerCall,
