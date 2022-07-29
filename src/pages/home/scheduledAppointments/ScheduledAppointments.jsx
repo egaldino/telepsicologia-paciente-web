@@ -28,9 +28,8 @@ const renderDetailsButton = (params) => {
 }
 
 const columns = [
-    { field: 'firstName', headerName: 'Nome', width: 200 },
-    { field: 'lastName', headerName: 'Sobrenome', width: 200 },
-    { field: 'crp', headerName: 'CRP', width: 200 },
+    { field: 'name', headerName: 'Nome', width: 200 },
+    { field: 'psychologist.id', headerName: 'CRP', width: 200 },
     { field: 'date', headerName: 'Data', width: 200 },
     { field: 'actions', headerName: 'Ações', width: 200, renderCell: renderDetailsButton },
 ];
@@ -53,14 +52,14 @@ const ScheduledAppointments = () => {
         {appointments.length > 0 &&  <Card>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    {appointments[0].firstName} {appointments[0].lastName} (CRP: {appointments[0].crp})
+                    {appointments[0].name} (CRP: {appointments[0].psychologist.id})
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                     {appointments[0].date}
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" component={Link} to={`/call/${appointments[0].crp}`}>Entrar na chamada</Button>
+                <Button size="small" component={Link} to={`/call/${appointments[0].psychologist.id}`}>Entrar na chamada</Button>
                 <Button size="small" sx={{color: 'error.main'}}>Cancelar</Button>
             </CardActions>
         </Card> }

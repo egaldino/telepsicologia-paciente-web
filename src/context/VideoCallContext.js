@@ -1,11 +1,11 @@
 import React, {createContext, useCallback, useEffect, useRef, useState} from 'react';
 import Peer from 'simple-peer';
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 
 const SocketContext = createContext();
 
-const socket = new WebSocket('wss://6a8b-138-117-221-171.sa.ngrok.io/socket');
+const socket = new WebSocket(process.env.REACT_APP_VIDEO_CALL_SOCKET);
 
 const ContextProvider = ({ children }) => {
   const [callAccepted, setCallAccepted] = useState(false);
@@ -21,6 +21,8 @@ const ContextProvider = ({ children }) => {
   const myVideo = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     navigator.mediaDevices.getUserMedia({ video: true, audio: true })
@@ -103,7 +105,7 @@ const ContextProvider = ({ children }) => {
 
     connectionRef.current.destroy();
 
-    window.location.reload();
+    navigate("/history")
   };
 
   return (

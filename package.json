@@ -2,7 +2,7 @@
   "name": "telepsicologia-paciente-web",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://cb20-138-117-222-73.sa.ngrok.io",
+  "homepage": ".",
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",

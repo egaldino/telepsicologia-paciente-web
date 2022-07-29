@@ -8,6 +8,7 @@ import * as React from "react";
 import {useState} from "react";
 import {scheduleNewAppointment} from "../../../service/appointments";
 import {useNavigate, useParams} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const ScheduleNew = () => {
 
@@ -16,10 +17,13 @@ const ScheduleNew = () => {
     const navigate = useNavigate();
     let { crp } = useParams();
 
+    const userId = useSelector(state => state.value.user.id);
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        scheduleNewAppointment(crp, data.get('date'))
+        scheduleNewAppointment(userId, crp, data.get('date'))
             .then(() =>{
                 navigate("/schedule")
             }).catch(error => console.error(error))
