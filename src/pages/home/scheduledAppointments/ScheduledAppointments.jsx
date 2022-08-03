@@ -28,8 +28,8 @@ const renderDetailsButton = (params) => {
 }
 
 const columns = [
-    { field: 'name', headerName: 'Nome', width: 200 },
-    { field: 'psychologist.id', headerName: 'CRP', width: 200 },
+    { field: 'psychologist.name', headerName: 'Nome', width: 375, valueGetter: (params) => params.row?.psychologist?.name  },
+    { field: 'psychologist.id', headerName: 'CRP', width: 200, valueGetter: (params) => params.row?.psychologist?.id  },
     { field: 'date', headerName: 'Data', width: 200 },
     { field: 'actions', headerName: 'Ações', width: 200, renderCell: renderDetailsButton },
 ];

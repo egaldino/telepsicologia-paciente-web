@@ -37,7 +37,7 @@ const ScheduleNew = () => {
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                     <InputMask
-                        mask="99/99/99 99:99:99"
+                        mask="9999-99-99 99:99"
                         value={date}
                         onChange={evt => setDate(evt.target.value)}
                         disabled={false}

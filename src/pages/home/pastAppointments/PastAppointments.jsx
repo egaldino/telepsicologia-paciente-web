@@ -25,7 +25,7 @@ const renderDetailsButton = (params) => {
 }
 
 const columns = [
-    { field: 'name', headerName: 'Nome', width: 375 },
+    { field: 'psychologist.name', headerName: 'Nome', width: 375, valueGetter: (params) => params.row?.psychologist?.name  },
     { field: 'date', headerName: 'Data', width: 375 },
     { field: 'actions', headerName: 'Ações', width: 250, renderCell: renderDetailsButton },
 ];
