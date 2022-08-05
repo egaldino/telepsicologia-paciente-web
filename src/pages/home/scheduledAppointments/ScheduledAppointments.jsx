@@ -52,7 +52,7 @@ const ScheduledAppointments = () => {
         {appointments.length > 0 &&  <Card>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    {appointments[0].name} (CRP: {appointments[0].psychologist.id})
+                    {appointments[0].psychologist.name} (CRP: {appointments[0].psychologist.id})
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                     {appointments[0].date}
