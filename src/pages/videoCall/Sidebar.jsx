@@ -13,7 +13,7 @@ const Sidebar = ({ children }) => {
   const [cameraOn] = useState(true);
 
   return (
-    <Container sx={{width: "600px"}}>
+    <Container sx={{width: "600px", display: "flex", alignItems: "center", justifyContent: "center"}}>
       <Paper elevation={10}>
         {children}
       </Paper>

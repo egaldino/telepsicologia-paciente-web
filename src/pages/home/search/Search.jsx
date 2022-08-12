@@ -7,16 +7,19 @@ import SearchIcon from '@mui/icons-material/Search';
 import Box from "@mui/material/Box";
 import {listPsychologists} from "../../../service/psychologists";
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const Search = () => {
     const [psychologists, setPsychologists] = useState([]);
     const [search, setSearch] = useState("");
 
+    const token = useSelector(state => state.value.user.token);
+
     useEffect(()=> {
-        listPsychologists()
+        listPsychologists(token)
             .then(psychologists => setPsychologists(psychologists))
             .catch(error => console.error(error));
-    } , [])
+    } , [token])
 
     return <>
         <Box mb={3}>

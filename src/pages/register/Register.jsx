@@ -6,13 +6,15 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import { Link as ReactRouterLink } from "react-router-dom";
+import { Link as ReactRouterLink, useNavigate } from "react-router-dom";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PsychologyIcon from "@mui/icons-material/Psychology";
+import { register } from '../../service/authentication';
+
 
 function Copyright(props) {
     return (
@@ -30,13 +32,21 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Register() {
+    let navigate = useNavigate();
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
+        const registerForm = {
+            name: `${data.get('firstName')} ${data.get('lastName')}`,
             email: data.get('email'),
             password: data.get('password'),
-        });
+            crp: data.get('cpf'),
+        };
+
+        register(registerForm).then(()=>{
+            navigate('/');
+        })
     };
 
     return (

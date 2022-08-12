@@ -18,12 +18,12 @@ const ScheduleNew = () => {
     let { crp } = useParams();
 
     const userId = useSelector(state => state.value.user.id);
-
+    const token = useSelector(state => state.value.user.token);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        scheduleNewAppointment(userId, crp, data.get('date'))
+        scheduleNewAppointment(userId, crp, data.get('date'), token)
             .then(() =>{
                 navigate("/schedule")
             }).catch(error => console.error(error))
