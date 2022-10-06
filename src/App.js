@@ -28,7 +28,7 @@ const App = () => {
                             <ScheduledAppointments />
                         </HomeTemplate>}/>
                     <Route path="schedule/:crp" element={
-                        <HomeTemplate title="Agendar consulta">
+                        <HomeTemplate title="Agendar Consulta">
                             <ScheduleNew />
                         </HomeTemplate>}/>
                     <Route path="history" element={
