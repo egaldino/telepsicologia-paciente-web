@@ -17,7 +17,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import BackGroundImage from './login_background.jpeg'
 import {login} from "../../service/authentication";
 import {useDispatch} from "react-redux";
-import {setUserId} from "../../store/store";
+import {setUser} from "../../store/store";
 
 function Copyright(props) {
     return (
@@ -43,7 +43,7 @@ export default function Login() {
         const data = new FormData(event.currentTarget);
         login(data.get('email'), data.get('password'))
             .then(response =>{
-                dispatch(setUserId(response.userId))
+                dispatch(setUser(response))
                 navigate("/search", {replace: true})
             }).catch(error => console.error(error))
     };
