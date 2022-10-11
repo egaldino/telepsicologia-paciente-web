@@ -1,5 +1,5 @@
 export const login = (email, password) =>{
-    return fetch(`${process.env.REACT_APP_AUTH_API_URL}/psychologist/login`, {
+    return fetch(`${process.env.REACT_APP_AUTH_API_URL}/patient/login`, {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json'},
         body: JSON.stringify({email, password})
@@ -8,7 +8,7 @@ export const login = (email, password) =>{
 }
 
 export const register = (registerForm) => {
-    return fetch(`${process.env.REACT_APP_AUTH_API_URL}/psychologist/register`, {
+    return fetch(`${process.env.REACT_APP_AUTH_API_URL}/patient/register`, {
         method: 'POST',
         headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
         body: JSON.stringify(registerForm)
