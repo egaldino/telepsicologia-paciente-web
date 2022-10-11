@@ -41,7 +41,7 @@ export default function Register() {
             name: `${data.get('firstName')} ${data.get('lastName')}`,
             email: data.get('email'),
             password: data.get('password'),
-            crp: data.get('cpf'),
+            cpf: data.get('cpf'),
         };
 
         register(registerForm).then(()=>{
